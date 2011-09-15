@@ -88,7 +88,7 @@ call s:Set("g:bufExplorerSplitBelow", &splitbelow)  " Should horizontal splits b
 let s:MRUList = []
 let s:running = 0
 let s:sort_by = ["number", "name", "fullpath", "mru", "extension"]
-let s:tabSpace = []
+let s:tabSpace = [[], [], [], [], [], [], [], [], [], []]
 let s:types = {"fullname": ':p', "path": ':p:h', "relativename": ':~:.', "relativepath": ':~:.:h', "shortname": ':t'}
 let s:originBuffer = 0
 let s:splitMode = ""
@@ -100,7 +100,7 @@ autocmd VimEnter * call s:Setup()
 function s:Setup()
                                 " Build initial MRUList.
   let s:MRUList = range(1, bufnr('$'))
-  let s:tabSpace = []
+  let s:tabSpace = [[], [], [], [], [], [], [], [], [], []]
                                 " Now that the MRUList is created, add the other autocmds.
   autocmd BufEnter,BufNew * call s:ActivateBuffer()
   autocmd BufWipeOut * call s:DeactivateBuffer(1)

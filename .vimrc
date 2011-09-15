@@ -158,11 +158,15 @@ set t_vb=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable "Enable syntax hl
 
-"set gfn=Consolas\ 12
-"set guifontwide=Microsoft\ Yahei\ 12
-set gfn=DejaVu\ Sans\ Mono\ 12
-set guifontwide=Microsoft\ Yahei\ 12,WenQuanYi\ Zen\ Hei\ 12
-"set shell=/bin/bash
+if has("win32") || has("win64")
+    set gfn=Consolas\ 12
+    set guifontwide=Microsoft\ Yahei\ 12
+elseif has("mac")
+    set gfn=Monaco:h13
+else
+    set guifontwide=Microsoft\ Yahei\ 12,WenQuanYi\ Zen\ Hei\ 12
+    set shell=/bin/bash
+endif
 
 if has("gui_running")
     set guioptions-=T
@@ -177,7 +181,7 @@ if has("gui_running")
     set nu
 else
     colorscheme yytextmate
-    set background=dark
+    "set background=dark
 
     set nonu
 endif
@@ -190,7 +194,13 @@ set ambiwidth=double
 "catch
 "endtry
 
-set ffs=unix,dos,mac "Default file types
+if has("win32") || has("win64")
+    set ffs=dos,unix,mac
+elseif has("mac")
+    set ffs=mac,unix,dos
+else
+    set ffs=unix,dos,mac
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -277,12 +287,12 @@ cno $c e <C-\>eCurrentFileDir("e")<cr>
 cno $q <C-\>eDeleteTillSlash()<cr>
 
 " Bash like keys for the command line
-cnoremap <C-A>		<Home>
-cnoremap <C-E>		<End>
-cnoremap <C-K>		<C-U>
+"cnoremap <C-A>		<Home>
+"cnoremap <C-E>		<End>
+"cnoremap <C-K>		<C-U>
 
-cnoremap <C-P> <Up>
-cnoremap <C-N> <Down>
+"cnoremap <C-P> <Up>
+"cnoremap <C-N> <Down>
 
 " Useful on some European keyboards
 "map Â½ $
@@ -611,6 +621,7 @@ nnoremap <silent> <leader>ft :FufTag<CR>
 nnoremap <silent> <leader>fb :FufBuffer<CR>
 nnoremap <silent> <leader>fd :FufDir<CR>
 nnoremap <F2> :FF<CR>
+nnoremap <F3> :FC .<CR>
 
 map <silent> <F8> :TlistToggle<CR>
 let Tlist_Use_Right_Window = 1
