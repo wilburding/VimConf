@@ -105,7 +105,7 @@ map <leader>e :e! ~/.vimrc<cr>
 autocmd! bufwritepost vimrc source ~/.vimrc
 
 "set autochdir "auto change current dir to file's dir
-autocmd BufEnter * lcd %:p:h
+"autocmd BufEnter * lcd %:p:h
 
 set backupcopy=yes
 
@@ -625,6 +625,9 @@ nnoremap <F3> :FC .<CR>
 
 map <silent> <F8> :TlistToggle<CR>
 let Tlist_Use_Right_Window = 1
+let Tlist_Show_One_File = 1
+
+set updatetime=500
 
 if has("cscope")
     set csprg=/usr/bin/cscope
