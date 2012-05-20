@@ -197,6 +197,7 @@ set ambiwidth=double
 if has("win32") || has("win64")
     set ffs=dos,unix,mac
 elseif has("mac")
+    set ff=unix
     set ffs=mac,unix,dos
 else
     set ffs=unix,dos,mac
@@ -485,7 +486,6 @@ autocmd BufRead,BufNew :call UMiniBufExplorer
 
 map <leader>u :TMiniBufExplorer<cr>:TMiniBufExplorer<cr>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Omni complete functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -514,6 +514,8 @@ au FileType python syn keyword pythonDecorator True None False self
 
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
+
+autocmd filetype lisp,scheme,art,racket setlocal equalprg=scmindent.rkt
 
 au FileType python inoremap <buffer> $r return 
 au FileType python inoremap <buffer> $i import 
@@ -578,11 +580,11 @@ map <leader>q :e ~/buffer<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
-map <F5> :call Compile()
-func! Compile()
+map <F5> :call Run()<CR>
+func! Run()
 	exec "w"
 	if &ft == 'cpp'
-		exec "! g++ -g -Wall -o %< % && %<"
+		exec "! g++ -g -Wall -o %< % && ./%<"
 	elseif &ft == 'c'
 		exec "! gcc -g -Wall -o %< % && ./%<"
 	elseif &ft == 'sh'
@@ -591,20 +593,9 @@ func! Compile()
 		exec "!python %"
 	elseif &ft == 'php'
 		exec "!php %"
-    elseif &ft == 'lua'
-        exec "!lua %"
+    elseif &ft == 'racket'
+        exec "!racket %"
 	endif
-endfunc
-
-map <F6> :call Make()
-func! Make()
-    exec "w"
-	exec "!make"
-endfunc
-
-map <F11> :call Gdb()
-func! Gdb()
-	exec "!gdb %<"
 endfunc
 
 " netrw setting
@@ -659,7 +650,7 @@ else
     let g:iswindows=0
 endif
 
-map <F12> :call Do_ctags()<CR>
+map <F10> :call Do_ctags()<CR>
 function Do_ctags()
     let dir = getcwd()
     if filereadable("tags")
