@@ -468,12 +468,6 @@ autocmd BufRead,BufNew :call UMiniBufExplorer
 map <leader>u :TMiniBufExplorer<cr>:TMiniBufExplorer<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Omni complete functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Pressing ,ss will toggle and untoggle spell checking
@@ -653,3 +647,26 @@ endfunction
 
 autocmd filetype lisp,scheme,art,racket setlocal equalprg=scmindent.rkt
 
+let g:indent_guides_guide_size=1
+
+map <leader>ch :call SetColorColumn()<CR>
+function! SetColorColumn()
+    let col_num = virtcol(".")
+    let cc_list = split(&cc, ',')
+    if count(cc_list, string(col_num)) <= 0
+        execute "set cc+=".col_num
+    else
+        execute "set cc-=".col_num
+    endif
+endfunction
+
+let g:clang_auto_select = 1
+let g:clang_user_options = "2>/dev/null || exit 0"
+"let g:clang_snippets_engine = "snipmate"
+
+"let g:SuperTabContextDefaultCompletionType = "<c-x><c-u>"
+"autocmd FileType *
+"\ if &omnifunc != '' |
+"\   call SuperTabChain(&omnifunc, "<c-p>") |
+"\   call SuperTabSetDefaultCompletionType("context") |
+"\ endif
