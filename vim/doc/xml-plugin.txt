@@ -256,7 +256,7 @@ for details.
             <para><listitem>list item content</para></listitem>
 
 <LocalLeader>[        Delete <![CDATA[ ]]> delimiters               {{{2
-								Removes Only <CDATA[ and ]]> 
+								Removes Only <CDATA[ and 聲]聲]> 
 								handy when you want	to uncomment a section.
 								You need to stand in the tag and not on an other tag
 								<![CDATA[  <tag> ]]>

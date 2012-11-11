@@ -89,6 +89,7 @@ filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
+set autowrite
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -187,7 +188,7 @@ else
 endif
 
 set encoding=utf8
-set fileencodings=cp936,utf8,utf16
+set fileencodings=utf8,cp936,utf16
 set ambiwidth=double
 "try
 "    lang en_US
@@ -195,12 +196,12 @@ set ambiwidth=double
 "endtry
 
 if has("win32") || has("win64")
-    set ffs=dos,unix,mac
+    set ffs=dos,unix
 elseif has("mac")
     set ff=unix
-    set ffs=mac,unix,dos
-else
     set ffs=unix,dos,mac
+else
+    set ffs=unix,dos
 endif
 
 
@@ -439,7 +440,7 @@ autocmd BufWrite *.py :call DeleteTrailingWS()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Do :help cope if you are unsure what cope is. It's super useful!
 map <leader>cc :botright cope<cr>
-map <leader>n :cn<cr>
+map <leader>nn :cn<cr>
 map <leader>p :cp<cr>
 
 
@@ -484,6 +485,7 @@ map <leader>s? z=
 " => Python section
 """"""""""""""""""""""""""""""
 au FileType python set nocindent
+au FileType python set nosmartindent
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
@@ -533,6 +535,8 @@ func! Run()
 		exec "!php %"
     elseif &ft == 'racket'
         exec "!racket %"
+    elseif &ft == 'ruby'
+        exec "!ruby %"
 	endif
 endfunc
 
@@ -660,13 +664,21 @@ function! SetColorColumn()
     endif
 endfunction
 
-let g:clang_auto_select = 1
+let g:clang_auto_select = 0
 let g:clang_user_options = "2>/dev/null || exit 0"
 "let g:clang_snippets_engine = "snipmate"
 
-"let g:SuperTabContextDefaultCompletionType = "<c-x><c-u>"
-"autocmd FileType *
-"\ if &omnifunc != '' |
-"\   call SuperTabChain(&omnifunc, "<c-p>") |
-"\   call SuperTabSetDefaultCompletionType("context") |
-"\ endif
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-u>"
+autocmd FileType *
+\ if &omnifunc != '' |
+\   call SuperTabChain(&omnifunc, "<c-p>") |
+\   call SuperTabSetDefaultCompletionType("context") |
+\ endif
+
+au FileType markdown set wrap
+
+
+" haskell mode
+au BufEnter *.hs compiler ghc
+let g:haddock_browser = "open"
+let g:haddock_browser_callformat = "%s %s"
