@@ -64,7 +64,7 @@ endif
 let g:haskell_functions = "ghc"
 
 " avoid hit-enter prompts
-set cmdheight=3
+"set cmdheight=3
 
 " edit static GHC options
 " TODO: add completion for options/packages?
@@ -503,32 +503,32 @@ else
 endif
 let s:opts = sort(s:opts)
 
-amenu ]OPTIONS_GHC.- :echo '-'<cr>
-aunmenu ]OPTIONS_GHC
-for o in s:opts
-  exe 'amenu ]OPTIONS_GHC.'.o.' :call append(0,"{-# OPTIONS_GHC '.o.' #-}")<cr>'
-endfor
-if has("gui_running")
-  map <LocalLeader>opt :popup ]OPTIONS_GHC<cr>
-else
-  map <LocalLeader>opt :emenu ]OPTIONS_GHC.
-endif
+"amenu ]OPTIONS_GHC.- :echo '-'<cr>
+"aunmenu ]OPTIONS_GHC
+"for o in s:opts
+  "exe 'amenu ]OPTIONS_GHC.'.o.' :call append(0,"{-# OPTIONS_GHC '.o.' #-}")<cr>'
+"endfor
+"if has("gui_running")
+  "map <LocalLeader>opt :popup ]OPTIONS_GHC<cr>
+"else
+  "map <LocalLeader>opt :emenu ]OPTIONS_GHC.
+"endif
 
-amenu ]LANGUAGES_GHC.- :echo '-'<cr>
-aunmenu ]LANGUAGES_GHC
-if haskellmode#GHC_VersionGE([6,8])
-  if !s:GHC_CachedConfig
-    let s:ghc_supported_languages = sort(split(system(g:ghc . ' --supported-languages'),'\n'))
-  endif
-  for l in s:ghc_supported_languages
-    exe 'amenu ]LANGUAGES_GHC.'.l.' :call append(0,"{-# LANGUAGE '.l.' #-}")<cr>'
-  endfor
-  if has("gui_running")
-    map <LocalLeader>lang :popup ]LANGUAGES_GHC<cr>
-  else
-    map <LocalLeader>lang :emenu ]LANGUAGES_GHC.
-  endif
-endif
+"amenu ]LANGUAGES_GHC.- :echo '-'<cr>
+"aunmenu ]LANGUAGES_GHC
+"if haskellmode#GHC_VersionGE([6,8])
+  "if !s:GHC_CachedConfig
+    "let s:ghc_supported_languages = sort(split(system(g:ghc . ' --supported-languages'),'\n'))
+  "endif
+  "for l in s:ghc_supported_languages
+    "exe 'amenu ]LANGUAGES_GHC.'.l.' :call append(0,"{-# LANGUAGE '.l.' #-}")<cr>'
+  "endfor
+  "if has("gui_running")
+    "map <LocalLeader>lang :popup ]LANGUAGES_GHC<cr>
+  "else
+    "map <LocalLeader>lang :emenu ]LANGUAGES_GHC.
+  "endif
+"endif
 
 if !s:GHC_CachedConfig
   call GHC_SaveConfig()

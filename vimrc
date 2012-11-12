@@ -537,6 +537,8 @@ func! Run()
         exec "!racket %"
     elseif &ft == 'ruby'
         exec "!ruby %"
+    elseif &ft == 'hs'
+        exec '!runhaskell %'
 	endif
 endfunc
 
