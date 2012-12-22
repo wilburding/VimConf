@@ -177,11 +177,13 @@ if has("gui_running")
     "set background=dark
     "set t_Co=256 "number of colors
     "set background=dark
-    colorscheme yytextmate
+    "colorscheme yytextmate
+    colorscheme molokai
 
     set nu
 else
-    colorscheme yytextmate
+    "colorscheme yytextmate
+    colorscheme molokai
     "set background=dark
 
     set nonu
@@ -295,12 +297,6 @@ cnoremap <C-K>		<C-U>
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
-
-" Useful on some European keyboards
-"map Â½ $
-"imap Â½ $
-"vmap Â½ $
-"cmap Â½ $
 
 
 func! Cwd()
@@ -667,14 +663,15 @@ function! SetColorColumn()
 endfunction
 
 let g:clang_auto_select = 0
+let g:clang_complete_auto = 0
 let g:clang_user_options = "2>/dev/null || exit 0"
 "let g:clang_snippets_engine = "snipmate"
 
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-u>"
+"let g:SuperTabContextDefaultCompletionType = "<c-x><c-u>"
 autocmd FileType *
 \ if &omnifunc != '' |
 \   call SuperTabChain(&omnifunc, "<c-p>") |
-\   call SuperTabSetDefaultCompletionType("context") |
+\   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
 \ endif
 
 au FileType markdown set wrap
