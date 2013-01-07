@@ -1120,7 +1120,7 @@ function! BufExplorer_ReSize()
 endfunction
 
 " Default key mapping {{{1
-if !hasmapto('BufExplorer')
+if !hasmapto(':BufExplorer<CR>')
     noremap <script> <silent> <unique> <Leader>be :BufExplorer<CR>
 endif
 

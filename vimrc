@@ -512,7 +512,7 @@ set grepprg=/bin/grep\ -nH
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 "Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
+map <leader>q :q<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
@@ -681,3 +681,5 @@ au FileType markdown set wrap
 au BufEnter *.hs compiler ghc
 let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
+
+au BufEnter *.cpp set ft=cpp11
