@@ -2,7 +2,7 @@
 " Language:     Racket 5.1
 " Maintainer:   Will Langstroth <will@langstroth.com>
 " URL:          http://github.com/wlangstroth/vim-racket.git
-" Last Change:  2011-06-08
+" Last Change:  2012-02-18
 " Description:  Contains all of the keywords in #lang racket
 
 " Initializing:
@@ -54,6 +54,22 @@ syn keyword racketSyntax define-package open-package package-begin
 syn keyword racketSyntax define* define*-values define*-syntax define*-syntaxes open*-package
 syn keyword racketSyntax package? package-exported-identifiers package-original-identifiers
 syn keyword racketSyntax block #%stratified-body
+
+" 12.5 Writing
+syn keyword racketSyntax write display displayln print
+syn keyword racketSyntax fprintf printf eprintf format
+syn keyword racketSyntax print-pair-curly-braces print-mpair-curly-braces print-unreadable
+syn keyword racketSyntax print-graph print-struct print-box print-vector-length print-hash-table
+syn keyword racketSyntax print-boolean-long-form print-reader-abbreviations print-as-expression print-syntax-width
+syn keyword racketSyntax current-write-relative-directory port-write-handler port-display-handler
+syn keyword racketSyntax port-print-handler global-port-print-handler
+
+
+" 13.7 Custodians
+syn keyword racketSyntax custodian? custodian-memory-accounting-available? custodian-box?
+syn keyword racketSyntax make-custodian custodian-shutdown-all current-custodian custodian-managed-list
+syn keyword racketSyntax custodian-require-memory custodian-limit-memory
+syn keyword racketSyntax make-custodian-box custodian-box-value
 
 " lambda sign
 syn match racketSyntax /\<[\u03bb]\>/
@@ -284,7 +300,7 @@ syn keyword racketFunc identity const thunk thunk* negate curry curryr
 syn keyword racketFunc void void?
 
 " 4.1 Defining Structure Types
-syn keyword racketFunc struct define-struct define-struct define-struct/derived
+syn keyword racketFunc struct struct-field-index define-struct define-struct define-struct/derived
 
 " 4.2 Creating Structure Types
 syn keyword racketFunc make-struct-type make-struct-field-accessor make-struct-field-mutator
@@ -294,6 +310,64 @@ syn keyword racketFunc make-struct-type-property struct-type-property? struct-ty
 
 " 4.4 Copying and Updating Structures
 syn keyword racketFunc struct-copy
+
+" 4.5 Structure Utilities
+syn keyword racketFunc struct->vector struct? struct-type?
+syn keyword racketFunc struct-constructor-procedure? struct-predicate-procedure? struct-accessor-procedure? struct-mutator-procedure?
+syn keyword racketFunc prefab-struct-key make-prefab-struct prefab-key->struct-type
+
+" 4.6 Structure Type Transformer Binding
+syn keyword racketFunc struct-info? check-struct-info? make-struct-info extract-struct-info
+syn keyword racketFunc struct-auto-info? struct-auto-info-lists
+
+" 5.1 Creating Interfaces
+syn keyword racketFunc interface interface*
+
+" 5.2 Creating Classes
+syn keyword racketFunc class* class inspect
+syn keyword racketFunc init init-field field inherit field init-rest
+syn keyword racketFunc public public* pubment pubment* public-final public-final*
+syn keyword racketFunc override override* overment overment* override-final override-final*
+syn keyword racketFunc augride augride* augment augment* augment-final augment-final*
+syn keyword racketFunc abstract inherit inherit/super inherit/inner
+syn keyword racketFunc rename-inner rename-super
+syn keyword racketFunc define/public define/pubment define/public-final
+syn keyword racketFunc define/override define/overment define/override-final
+syn keyword racketFunc define/augride define/augment define/augment-final
+syn keyword racketFunc private* define/private
+
+" 5.2.3 Methods
+syn keyword racketFunc class/derived
+syn keyword racketFunc super inner define-local-member-name define-member-name
+syn keyword racketFunc member-name-key generate-member-key member-name-key?
+syn keyword racketFunc member-name-key=? member-name-key-hash-code
+
+" 5.3 Creating Objects
+syn keyword racketFunc make-object instantiate new
+syn keyword racketFunc super-make-object super-instantiate super-new
+
+"5.4 Field and Method Access
+syn keyword racketFunc method-id send send/apply send/keyword-apply dynamic-send send*
+syn keyword racketFunc get-field set-field! field-bound?
+syn keyword racketFunc class-field-accessor class-field-mutator
+
+"5.4.3 Generics
+syn keyword racketFunc generic send-generic make-generic
+
+" 14.1.1 Manipulating Paths
+syn keyword racketFunc path? path-string? path-for-some-system? string->path path->string path->bytes
+syn keyword racketFunc string->path-element bytes->path-element path-element->string path-element->bytes
+syn keyword racketFunc path-convention-type system-path-convention-type build-type
+syn keyword racketFunc build-type/convention-type
+syn keyword racketFunc absolute-path? relative-path? complete-path?
+syn keyword racketFunc path->complete-path path->directory-path
+syn keyword racketFunc resolve-path cleanse-path expand-user-path simplify-path normal-case-path split-path
+syn keyword racketFunc path-replace-suffix path-add-suffix
+
+" 14.1.2 More Path Utilities
+syn keyword racketFunc explode-path file-name-from-path filename-extension find-relative-path normalize-path
+syn keyword racketFunc path-element? path-only simple-form-path some-simple-path->string string->some-system-path
+
 
 
 syn match racketDelimiter !\<\.\>!
