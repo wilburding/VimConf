@@ -685,3 +685,5 @@ let g:haddock_browser_callformat = "%s %s"
 au BufEnter *.cpp set ft=cpp11
 
 let NERDTreeIgnore=['.o$', '.pyc$', '.d$']
+
+set makeprg=make\ -w
