@@ -684,6 +684,11 @@ let g:haddock_browser_callformat = "%s %s"
 
 au BufEnter *.cpp set ft=cpp11
 
-let NERDTreeIgnore=['.o$', '.pyc$', '.d$']
+let NERDTreeIgnore=['\.o$', '\.d$', '\.pyc$', '\.d$']
 
 set makeprg=make\ -w
+
+augroup VCSCommand
+  au User VCSBufferCreated silent! nmap <unique> <buffer> q :bwipeout<cr>
+augroup END
+let VCSCommandMapPrefix='<leader>v'
