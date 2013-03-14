@@ -2455,7 +2455,7 @@ function! C_InsertTemplateWrapper ()
 		if index( s:C_SourceCodeExtensionsList, expand('%:e') ) >= 0 
  			call mmtemplates#core#InsertTemplate(g:C_Templates, 'Comments.file description impl')
 		else
- 			call mmtemplates#core#InsertTemplate(g:C_Templates, 'Comments.file description-header')
+ 			call mmtemplates#core#InsertTemplate(g:C_Templates, 'Comments.file description header')
 		endif
 		set modified
 	endif
