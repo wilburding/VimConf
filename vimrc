@@ -667,12 +667,8 @@ let g:clang_complete_auto = 0
 let g:clang_user_options = "2>/dev/null || exit 0"
 "let g:clang_snippets_engine = "snipmate"
 
-"let g:SuperTabContextDefaultCompletionType = "<c-x><c-u>"
-autocmd FileType *
-\ if &omnifunc != '' |
-\   call SuperTabChain(&omnifunc, "<c-p>") |
-\   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
-\ endif
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-p>"
 
 au FileType markdown set wrap
 
@@ -686,9 +682,11 @@ au BufEnter *.cpp set ft=cpp11
 
 let NERDTreeIgnore=['\.o$', '\.d$', '\.pyc$', '\.d$']
 
-set makeprg=make\ -w
+set makeprg=make\ -w\ -j5
 
 augroup VCSCommand
   au User VCSBufferCreated silent! nmap <unique> <buffer> q :bwipeout<cr>
 augroup END
 let VCSCommandMapPrefix='<leader>v'
+
+let xml_use_xhtml = 1
