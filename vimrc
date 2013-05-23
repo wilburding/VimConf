@@ -160,8 +160,8 @@ set t_vb=
 syntax enable "Enable syntax hl
 
 if has("win32") || has("win64")
-    set gfn=Consolas\ 12
-    set guifontwide=Microsoft\ Yahei\ 12
+    set gfn=Consolas:h12:w7:cANSI
+    set guifontwide=Youyuan:h12:cGB2312
 elseif has("mac")
     set gfn=Monaco:h13
 else
@@ -584,7 +584,7 @@ nmap <leader>cff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>cfi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader>cfd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-if(has("win32") || has("win95") || has("win64") || has("win16")) "判定当前操作系统类型
+if(has("win32") || has("win95") || has("win64") || has("win16"))
     let g:iswindows=1
 else
     let g:iswindows=0
@@ -690,3 +690,4 @@ augroup END
 let VCSCommandMapPrefix='<leader>v'
 
 let xml_use_xhtml = 1
+autocmd BufWritePost *.py call Flake8()
