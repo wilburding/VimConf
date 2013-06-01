@@ -171,7 +171,7 @@ endif
 
 if has("gui_running")
     set guioptions-=T
-    "au GUIEnter * simalt ~x
+    au GUIEnter * simalt ~x
     "set lines=30
     "set columns=120
     "set background=dark
@@ -502,7 +502,7 @@ endtry
 " => Vim grep
 """"""""""""""""""""""""""""""
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
-set grepprg=/bin/grep\ -nH
+set grepprg=grep\ -nH
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -637,7 +637,7 @@ function Do_ctags()
         if(g:iswindows!=1)
             silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
         else
-            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
+            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs,*.py >> cscope.files"
         endif
         silent! execute "!cscope -b"
         execute "normal :"
@@ -691,3 +691,7 @@ let VCSCommandMapPrefix='<leader>v'
 
 let xml_use_xhtml = 1
 autocmd BufWritePost *.py call Flake8()
+let python_version_2 = 1  " python.vim
+au FileType python set ff=unix
+au FileType html set ff=unix
+au FileType conf set ff=unix
