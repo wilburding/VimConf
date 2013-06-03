@@ -395,7 +395,7 @@ endtry
 set laststatus=2
 
 " Format the statusline
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c\ \ \ Branch:%{fugitive#statusline()}\ \ \ ga:%b\ 0x%B
 
 
 function! CurDir()
@@ -690,8 +690,13 @@ augroup END
 let VCSCommandMapPrefix='<leader>v'
 
 let xml_use_xhtml = 1
+
 autocmd BufWritePost *.py call Flake8()
 let python_version_2 = 1  " python.vim
+
 au FileType python set ff=unix
 au FileType html set ff=unix
 au FileType conf set ff=unix
+
+au FileType python compiler pylint
+let g:pylint_onwrite = 0
