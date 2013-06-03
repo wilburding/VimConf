@@ -247,7 +247,6 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 
 function! CmdLine(str)
@@ -667,8 +666,8 @@ let g:clang_complete_auto = 0
 let g:clang_user_options = "2>/dev/null || exit 0"
 "let g:clang_snippets_engine = "snipmate"
 
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-p>"
+"let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabContextDefaultCompletionType = "<c-p>"
 
 au FileType markdown set wrap
 
@@ -684,11 +683,6 @@ let NERDTreeIgnore=['\.o$', '\.d$', '\.pyc$', '\.d$']
 
 set makeprg=make\ -w\ -j5
 
-augroup VCSCommand
-  au User VCSBufferCreated silent! nmap <unique> <buffer> q :bwipeout<cr>
-augroup END
-let VCSCommandMapPrefix='<leader>v'
-
 let xml_use_xhtml = 1
 
 autocmd BufWritePost *.py call Flake8()
@@ -700,3 +694,4 @@ au FileType conf set ff=unix
 
 au FileType python compiler pylint
 let g:pylint_onwrite = 0
+let g:pylint_rcfile="D:\work\pylint_rcfile"

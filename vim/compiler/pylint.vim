@@ -114,9 +114,9 @@ au CursorMoved <buffer> call s:GetPylintMessage()
 " pylint --rcfile pylint.rc -i y hola.py|grep -e '^[WECY]'|sed -e 's/^W/2 W /' -e 's/^E/1 E /' -e
 " 's/^C/3 C /' |sort -k1,3
 " CompilerSet makeprg=(echo\ '[%]';pylint\ -i\ y\ '%'\\\|grep\ -e\ \'^[WECY]\'\\\|sed\ -e\ \'s/^E/1\ E\ /\'\ -e\ \'s/^W/2\ W\ /\'\ -e\ \'s/^C/3\ C\ /\'\ -e\ \'s/:[\.\ _a-zA-Z]*:/:/g\'\ \\\|sort\ -k1,3)
-set makeprg=pylint\ --reports=n\ -i\ y\ --output-format=parseable\ %:p
-"set errorformat=%f:%l:\ %m
-set efm=%A%f:%l:\ [%t%n,\ %.%#]\ %m,%Z%p^^,%-C%.%#,%-GNo%.%#
+set makeprg=pylint\ --rcfile=\"D:\\work\\pylint_rcfile\"\ \ --reports=n\ -i\ y\ --output-format=parseable\ %:p
+set errorformat=%A%f:%l:\ %m
+"set efm=%A%f:%l:\ [%t%n,\ %.%#]\ %m,%Z%p^^,%-C%.%#,%-GNo%.%#
 
 " We could omit end of file-entry, there is only one file
 " %+I... - include code rating information
