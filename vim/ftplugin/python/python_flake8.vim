@@ -73,7 +73,7 @@ if !exists("*Flake8()")
         " open cwindow
         let has_results=getqflist() != []
         if has_results
-            execute 'belowright copen'
+            execute 'bot copen'
             setlocal wrap
             nnoremap <buffer> <silent> c :cclose<CR>
             nnoremap <buffer> <silent> q :cclose<CR>

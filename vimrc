@@ -501,7 +501,7 @@ endtry
 " => Vim grep
 """"""""""""""""""""""""""""""
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
-set grepprg=grep\ -nH
+set grepprg=grep\ -nIH
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -688,9 +688,11 @@ let xml_use_xhtml = 1
 autocmd BufWritePost *.py call Flake8()
 let python_version_2 = 1  " python.vim
 
-au FileType python set ff=unix
-au FileType html set ff=unix
-au FileType conf set ff=unix
+au FileType python setlocal ff=unix
+au FileType html setlocal ff=unix
+au FileType conf setlocal ff=unix
+au FileType html setlocal shiftwidth=2
+au FileType html setlocal tabstop=2
 
 au FileType python compiler pylint
 let g:pylint_onwrite = 0
