@@ -525,7 +525,7 @@ func! Run()
 	elseif &ft == 'sh'
 		exec "! chmod +x % && ./%"
 	elseif &ft == 'python'
-		exec "!python %"
+		exec "!pypy %"
 	elseif &ft == 'php'
 		exec "!php %"
     elseif &ft == 'racket'

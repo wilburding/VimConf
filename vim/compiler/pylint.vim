@@ -164,7 +164,8 @@ function! Pylint(writing)
     endif
 
     if g:pylint_cwindow
-        cwindow
+        exec "bot cwindow"
+        "cwindow
     endif
 
     call PylintEvaluation()
