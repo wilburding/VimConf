@@ -73,7 +73,48 @@
 "     > 3.1: Added revisions ;) and bufexplorer.vim
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible
+filetype off
 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'lepture/vim-jinja'
+
+Bundle 'pangloss/vim-javascript'
+Bundle 'mattn/emmet-vim'
+Bundle 'majutsushi/tagbar'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'IndentAnything'
+Bundle 'c.vim'
+Bundle 'bufexplorer.zip'
+Bundle 'FindFile'
+Bundle 'matchit.zip'
+Bundle 'snipMate'
+Bundle 'surround.vim'
+"Bundle 'taglist.vim'
+Bundle 'SuperTab'
+Bundle 'python.vim'
+Bundle 'molokai'
+" non github repos
+" Bundle 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (ie. when working on your own plugin)
+" Bundle 'file:///Users/gmarik/path/to/plugin'
+
+filetype plugin indent on     " required!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -118,7 +159,6 @@ set confirm
 set display=lastline
 set formatoptions=tcqro " auto prifix new comment line with space and *
 set mouse=a
-set nocompatible
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -171,21 +211,17 @@ endif
 
 if has("gui_running")
     set guioptions-=T
-    au GUIEnter * simalt ~x
-    "set lines=30
-    "set columns=120
-    "set background=dark
-    "set t_Co=256 "number of colors
-    "set background=dark
-    "colorscheme yytextmate
-    colorscheme molokai
+    if !has("mac")
+        au GUIEnter * simalt ~x
+    else
+        set lines=30
+        set columns=120
+    endif
 
+    colorscheme molokai
     set nu
 else
-    "colorscheme yytextmate
     colorscheme molokai
-    "set background=dark
-
     set nonu
 endif
 
@@ -232,10 +268,6 @@ set cindent cinoptions=g0,:0
 set si "Smart indet
 set nowrap "Wrap lines
 
-"map <leader>t2 :setlocal shiftwidth=2<cr>
-"map <leader>t4 :setlocal shiftwidth=4<cr>
-"map <leader>t8 :setlocal shiftwidth=4<cr>
-
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -280,15 +312,6 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command mode related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Smart mappings on the command line
-cno $h e ~/
-cno $d e ~/Desktop/
-cno $j e ./
-cno $c e <C-\>eCurrentFileDir("e")<cr>
-
-" $q is super useful when browsing on the command line
-cno $q <C-\>eDeleteTillSlash()<cr>
-
 " Bash like keys for the command line
 cnoremap <C-A>		<Home>
 cnoremap <C-E>		<End>
@@ -412,14 +435,6 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Remap VIM 0
-"map 0 ^
-
-"Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 "Delete trailing white space, useful for Python ;)
 func! DeleteTrailingWS()
@@ -444,36 +459,7 @@ map <leader>p :cp<cr>
 """"""""""""""""""""""""""""""
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
-
-
-""""""""""""""""""""""""""""""
-" => Minibuffer plugin
-""""""""""""""""""""""""""""""
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplorerMoreThanOne = 100 "stop it from showing
-let g:miniBufExplModSelTarget = 0
-let g:miniBufExplUseSingleClick = 0
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplVSplit = 25
-let g:miniBufExplSplitBelow=1
-
 let g:bufExplorerSortBy = "mru"
-
-autocmd BufRead,BufNew :call UMiniBufExplorer
-
-map <leader>u :TMiniBufExplorer<cr>:TMiniBufExplorer<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
-
-"Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
 
 
 """"""""""""""""""""""""""""""
@@ -553,9 +539,10 @@ nnoremap <silent> <leader>fd :FufDir<CR>
 nnoremap <F2> :FF<CR>
 nnoremap <F3> :FC .<CR>
 
-map <silent> <F8> :TlistToggle<CR>
-let Tlist_Use_Right_Window = 1
-let Tlist_Show_One_File = 1
+"map <silent> <F8> :TlistToggle<CR>
+"let Tlist_Use_Right_Window = 1
+"let Tlist_Show_One_File = 1
+nmap <F8> :TagbarToggle<CR> 
 
 set updatetime=500
 
@@ -634,7 +621,7 @@ function Do_ctags()
     endif
     if(executable('cscope') && has("cscope") )
         if(g:iswindows!=1)
-            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' -o -name '*.py' > cscope.files"
         else
             silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs,*.py >> cscope.files"
         endif
@@ -685,7 +672,7 @@ set makeprg=make\ -w\ -j5
 
 let xml_use_xhtml = 1
 
-autocmd BufWritePost *.py call Flake8()
+" autocmd BufWritePost *.py call Flake8()
 let python_version_2 = 1  " python.vim
 
 au FileType python setlocal ff=unix
@@ -693,7 +680,3 @@ au FileType html setlocal ff=unix
 au FileType conf setlocal ff=unix
 au FileType html setlocal shiftwidth=2
 au FileType html setlocal tabstop=2
-
-au FileType python compiler pylint
-let g:pylint_onwrite = 0
-let g:pylint_rcfile="D:\work\pylint_rcfile"
