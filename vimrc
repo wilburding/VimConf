@@ -92,6 +92,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'lepture/vim-jinja'
 Bundle 'ervandew/supertab'
+Bundle 'hynek/vim-python-pep8-indent'
 
 Bundle 'pangloss/vim-javascript'
 Bundle 'mattn/emmet-vim'
@@ -145,7 +146,7 @@ nmap <leader>w :w!<cr>
 map <leader>e :e! ~/.vimrc<cr>
 
 " When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vimrc
+" autocmd! bufwritepost vimrc source ~/.vimrc
 
 "set autochdir "auto change current dir to file's dir
 "autocmd BufEnter * lcd %:p:h
@@ -488,7 +489,7 @@ endtry
 " => Vim grep
 """"""""""""""""""""""""""""""
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
-set grepprg=grep\ -nIH
+set grepprg=grep\ -nIH\ --exclude=tags\ --exclude=cscope.*\ --exclude-dir=.git
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -681,3 +682,7 @@ au FileType html setlocal ff=unix
 au FileType conf setlocal ff=unix
 au FileType html setlocal shiftwidth=2
 au FileType html setlocal tabstop=2
+
+let g:syntastic_python_checkers=['flake8', 'python']
+let g:syntastic_check_on_wq=0
+let g:syntastic_always_populate_loc_list=1
