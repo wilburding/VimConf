@@ -94,9 +94,10 @@ Bundle 'lepture/vim-jinja'
 Bundle 'ervandew/supertab'
 Bundle 'hynek/vim-python-pep8-indent'
 
-Bundle 'pangloss/vim-javascript'
-Bundle 'mattn/emmet-vim'
+" Bundle 'mattn/emmet-vim'
 Bundle 'majutsushi/tagbar'
+Bundle "pangloss/vim-javascript"
+" Bundle 'jelera/vim-javascript-syntax'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
@@ -201,9 +202,14 @@ set t_vb=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable "Enable syntax hl
 
+set encoding=utf8
+set fileencodings=utf8,cp936,utf16
+set ambiwidth=double
+
 if has("win32") || has("win64")
     set gfn=Consolas:h12:w7:cANSI
-    set guifontwide=Youyuan:h12:cGB2312
+    "set guifontwide=Microsoft\ YaHei:b:h12:cGB2312
+    "set guifontwide=Microsoft\ YaHei\ 12
 elseif has("mac")
     set gfn=Monaco:h13
 else
@@ -226,14 +232,6 @@ else
     colorscheme molokai
     set nonu
 endif
-
-set encoding=utf8
-set fileencodings=utf8,cp936,utf16
-set ambiwidth=double
-"try
-"    lang en_US
-"catch
-"endtry
 
 if has("win32") || has("win64")
     set ffs=dos,unix
@@ -513,7 +511,7 @@ func! Run()
 	elseif &ft == 'sh'
 		exec "! chmod +x % && ./%"
 	elseif &ft == 'python'
-		exec "!pypy %"
+		exec "!python %"
 	elseif &ft == 'php'
 		exec "!php %"
     elseif &ft == 'racket'
