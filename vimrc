@@ -93,6 +93,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'lepture/vim-jinja'
 Bundle 'ervandew/supertab'
 Bundle 'hynek/vim-python-pep8-indent'
+Bundle 'davidhalter/jedi-vim'
 
 " Bundle 'mattn/emmet-vim'
 Bundle 'majutsushi/tagbar'
@@ -469,6 +470,7 @@ au FileType python set nocindent
 au FileType python set nosmartindent
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
+autocmd FileType python setlocal completeopt-=preview
 
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
@@ -664,7 +666,7 @@ au BufEnter *.hs compiler ghc
 let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
 
-au BufEnter *.cpp set ft=cpp11
+"au BufEnter *.cpp set ft=cpp11
 
 let NERDTreeIgnore=['\.o$', '\.d$', '\.pyc$', '\.d$']
 
@@ -684,3 +686,5 @@ au FileType html setlocal tabstop=2
 let g:syntastic_python_checkers=['flake8', 'python']
 let g:syntastic_check_on_wq=0
 let g:syntastic_always_populate_loc_list=1
+
+let g:jedi#use_tabs_not_buffers = 0
