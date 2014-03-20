@@ -94,6 +94,7 @@ Bundle 'lepture/vim-jinja'
 Bundle 'ervandew/supertab'
 Bundle 'hynek/vim-python-pep8-indent'
 Bundle 'davidhalter/jedi-vim'
+Bundle 'Rip-Rip/clang_complete'
 
 " Bundle 'mattn/emmet-vim'
 Bundle 'majutsushi/tagbar'
@@ -231,7 +232,7 @@ if has("gui_running")
     set nu
 else
     colorscheme molokai
-    set nonu
+    set nu
 endif
 
 if has("win32") || has("win64")
@@ -650,9 +651,10 @@ function! SetColorColumn()
     endif
 endfunction
 
-let g:clang_auto_select = 0
+if g:iswindows == 1
+    let g:clang_complete_loaded = 1  "disable
+endif
 let g:clang_complete_auto = 0
-let g:clang_user_options = "2>/dev/null || exit 0"
 "let g:clang_snippets_engine = "snipmate"
 
 "let g:SuperTabDefaultCompletionType = "context"
