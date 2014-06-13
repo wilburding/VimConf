@@ -76,7 +76,7 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " let Vundle manage Vundle
@@ -95,6 +95,7 @@ Bundle 'ervandew/supertab'
 Bundle 'hynek/vim-python-pep8-indent'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Rip-Rip/clang_complete'
+Bundle 'altercation/vim-colors-solarized'
 
 " Bundle 'mattn/emmet-vim'
 Bundle 'majutsushi/tagbar'
@@ -228,10 +229,14 @@ if has("gui_running")
         set columns=120
     endif
 
-    colorscheme molokai
+    "colorscheme molokai
+    set background=dark
+    colorscheme solarized
     set nu
 else
-    colorscheme molokai
+    "colorscheme molokai
+    set background=dark
+    colorscheme solarized
     set nu
 endif
 
@@ -541,6 +546,7 @@ nnoremap <silent> <leader>fb :FufBuffer<CR>
 nnoremap <silent> <leader>fd :FufDir<CR>
 nnoremap <F2> :FF<CR>
 nnoremap <F3> :FC .<CR>
+let g:FindFileIgnore = ['*.o', '*.pyc', '*/tmp/*', '*/static/mathjax/*'] 
 
 "map <silent> <F8> :TlistToggle<CR>
 "let Tlist_Use_Right_Window = 1

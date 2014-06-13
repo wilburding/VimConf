@@ -1,3 +1,3 @@
 set vb t_vb= 
-set columns=160
-set lines=45
+set columns=240
+set lines=60
