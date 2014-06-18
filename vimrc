@@ -157,9 +157,7 @@ map <leader>e :e! ~/.vimrc<cr>
 
 set backupcopy=yes
 
-if v:version >= 700
-    set completeopt=menu,longest
-endif
+set completeopt=menu,longest
 
 set confirm
 set display=lastline
@@ -214,7 +212,7 @@ if has("win32") || has("win64")
     "set guifontwide=Microsoft\ YaHei:b:h12:cGB2312
     "set guifontwide=Microsoft\ YaHei\ 12
 elseif has("mac")
-    set gfn=Monaco:h13
+    set gfn=Monaco:h14
 else
     set guifontwide=Microsoft\ Yahei\ 12,WenQuanYi\ Zen\ Hei\ 12
     set shell=/bin/bash
@@ -380,7 +378,8 @@ map <leader>bn :bn<cr>
 map <leader>bp :bp<cr>
 
 " Tab configuration
-map <leader>tn :tabnew %<cr>
+map <leader>tn :tabn<cr>
+map <leader>tp :tabp<cr>
 map <leader>te :tabedit 
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
@@ -476,7 +475,7 @@ au FileType python set nocindent
 au FileType python set nosmartindent
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
-autocmd FileType python setlocal completeopt-=preview
+autocmd FileType python setlocal completeopt=menu,longest
 
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
