@@ -660,6 +660,10 @@ if g:iswindows == 1
     let g:clang_complete_loaded = 1  "disable
 endif
 let g:clang_complete_auto = 0
+let s:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
+if isdirectory(s:clang_library_path)
+    let g:clang_library_path=s:clang_library_path
+endif
 "let g:clang_snippets_engine = "snipmate"
 
 "let g:SuperTabDefaultCompletionType = "context"
