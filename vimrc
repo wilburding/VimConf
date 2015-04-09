@@ -627,7 +627,7 @@ function Do_ctags()
     endif
     if(executable('ctags'))
         "silent! execute "!ctags -R --c-types=+p --fields=+S *"
-        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --extra=+q --exclude=static/ckeditor --exclude=static/mathjax --exclude=static/node_modules ."
     endif
     if(executable('cscope') && has("cscope") )
         if(g:iswindows!=1)
@@ -696,12 +696,16 @@ au FileType conf setlocal ff=unix
 au FileType html setlocal shiftwidth=2
 au FileType html setlocal tabstop=2
 
-let g:syntastic_python_checkers=['flake8', 'python']
 let g:syntastic_check_on_wq=0
+let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list=1
 
-let g:syntastic_cpp_checkers = ['cppcheck', 'gcc']
+let g:syntastic_python_checkers=['flake8']
+
+let g:syntastic_cpp_checkers = ['gcc', 'cppcheck']
 let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_no_default_include_dirs = 1
 
 let g:jedi#use_tabs_not_buffers = 0
 
