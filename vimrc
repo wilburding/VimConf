@@ -425,11 +425,11 @@ endtry
 set laststatus=2
 
 " Format the statusline
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c\ \ \ Branch:%{fugitive#statusline()}\ \ \ ga:%b\ 0x%B
+set statusline=\ %F%m%r%h[%{&ff}]\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c\ \ \ Branch:%{fugitive#statusline()}\ \ \ GA:%b\ 0x%B
 
 
 function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
+    let curdir = substitute(getcwd(), '/Users/wilbur/', "~/", "g")
     return curdir
 endfunction
 
@@ -642,6 +642,7 @@ function Do_ctags()
         endif
     endif
 endfunction
+set cscopequickfix=s-,c-,d-,i-,t-,e-
 
 autocmd filetype lisp,scheme,art,racket setlocal equalprg=scmindent.rkt
 
