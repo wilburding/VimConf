@@ -206,7 +206,7 @@ set t_vb=
 syntax enable "Enable syntax hl
 
 set encoding=utf8
-set fileencodings=utf8,cp936,utf16
+set fileencodings=utf8,cp936,latin1,default
 set ambiwidth=double
 
 if has("win32") || has("win64")
@@ -425,7 +425,7 @@ endtry
 set laststatus=2
 
 " Format the statusline
-set statusline=\ %F%m%r%h[%{&ff}]\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c\ \ \ Branch:%{fugitive#statusline()}\ \ \ GA:%b\ 0x%B
+set statusline=\ %F%m%r%h[%{&ff},%{&fenc}]\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c\ \ \ Branch:%{fugitive#statusline()}\ \ \ GA:%b\ 0x%B
 
 
 function! CurDir()
