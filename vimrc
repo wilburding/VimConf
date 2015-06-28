@@ -73,57 +73,82 @@
 "     > 3.1: Added revisions ;) and bufexplorer.vim
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
-filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+"NeoBundle Scripts-----------------------------
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
+  " Required:
+  set runtimepath+=/Users/wilbur/.vim/bundle/neobundle.vim/
+endif
 
-" My Bundles here:
-"
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'lepture/vim-jinja'
-Bundle 'ervandew/supertab'
-Bundle 'hynek/vim-python-pep8-indent'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'Rip-Rip/clang_complete'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'lukerandall/haskellmode-vim'
-Bundle 'sukima/xmledit'
+" Required:
+call neobundle#begin(expand('/Users/wilbur/.vim/bundle'))
 
-" Bundle 'mattn/emmet-vim'
-Bundle 'majutsushi/tagbar'
-Bundle "pangloss/vim-javascript"
-" Bundle 'jelera/vim-javascript-syntax'
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
+
+" Add or remove your Bundles here:
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
+
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'lepture/vim-jinja'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'hynek/vim-python-pep8-indent'
+NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'Rip-Rip/clang_complete'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'lukerandall/haskellmode-vim'
+NeoBundle 'sukima/xmledit'
+NeoBundle 'lambdalisue/vim-pyenv'
+
+NeoBundle 'majutsushi/tagbar'
+NeoBundle "pangloss/vim-javascript"
 " vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'IndentAnything'
-Bundle 'c.vim'
-Bundle 'bufexplorer.zip'
-Bundle 'FindFile'
-Bundle 'matchit.zip'
-Bundle 'snipMate'
-Bundle 'surround.vim'
-"Bundle 'taglist.vim'
-"Bundle 'SuperTab'
-Bundle 'python.vim'
-Bundle 'molokai'
-" non github repos
-" Bundle 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (ie. when working on your own plugin)
-" Bundle 'file:///Users/gmarik/path/to/plugin'
+NeoBundle 'L9'
+NeoBundle 'FuzzyFinder'
+NeoBundle 'IndentAnything'
+NeoBundle 'c.vim'
+NeoBundle 'bufexplorer.zip'
+NeoBundle 'FindFile'
+NeoBundle 'matchit.zip'
+NeoBundle 'snipMate'
+NeoBundle 'surround.vim'
+NeoBundle 'python.vim'
+NeoBundle 'molokai'
 
-filetype plugin indent on     " required!
+" You can specify revision/branch/tag.
+NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
+" Required:
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+"End NeoBundle Scripts------------------
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
