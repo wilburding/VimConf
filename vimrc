@@ -119,21 +119,19 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'lukerandall/haskellmode-vim'
 NeoBundle 'sukima/xmledit'
 NeoBundle 'lambdalisue/vim-pyenv'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
 
 NeoBundle 'majutsushi/tagbar'
 NeoBundle "pangloss/vim-javascript"
 " vim-scripts repos
 NeoBundle 'L9'
-NeoBundle 'FuzzyFinder'
 NeoBundle 'IndentAnything'
 NeoBundle 'c.vim'
 NeoBundle 'bufexplorer.zip'
-NeoBundle 'FindFile'
 NeoBundle 'matchit.zip'
-NeoBundle 'snipMate'
-NeoBundle 'surround.vim'
 NeoBundle 'python.vim'
-NeoBundle 'molokai'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -789,3 +787,8 @@ command! -range=% FormatXML <line1>,<line2>call DoFormatXML()
 
 nmap <silent> <leader>x :%FormatXML<CR>
 vmap <silent> <leader>x :FormatXML<CR>
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
