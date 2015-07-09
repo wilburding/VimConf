@@ -102,7 +102,6 @@ NeoBundle 'Shougo/vimproc.vim', {
 \ }
 
 " Add or remove your Bundles here:
-NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
 
@@ -118,7 +117,6 @@ NeoBundle 'Rip-Rip/clang_complete'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'lukerandall/haskellmode-vim'
 NeoBundle 'sukima/xmledit'
-NeoBundle 'lambdalisue/vim-pyenv'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
@@ -505,15 +503,6 @@ autocmd FileType python setlocal completeopt=menu,longest
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
 
-""""""""""""""""""""""""""""""
-" => Fuzzy finder
-""""""""""""""""""""""""""""""
-try
-    call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
-    map <leader>t :FufCWD **/<CR>
-catch
-endtry
-
 
 """"""""""""""""""""""""""""""
 " => Vim grep
@@ -564,17 +553,6 @@ nmap <silent> <leader>nt :NERDTree<cr>
 
 "let loaded_taglist = 1
 
-nnoremap <silent> <leader>ff :FufFile<CR>
-nnoremap <silent> <leader>ft :FufTag<CR>
-nnoremap <silent> <leader>fb :FufBuffer<CR>
-nnoremap <silent> <leader>fd :FufDir<CR>
-nnoremap <F2> :FF<CR>
-nnoremap <F3> :FC .<CR>
-let g:FindFileIgnore = ['*.o', '*.pyc', '*/tmp/*', '*/static/mathjax/*'] 
-
-"map <silent> <F8> :TlistToggle<CR>
-"let Tlist_Use_Right_Window = 1
-"let Tlist_Show_One_File = 1
 nmap <F8> :TagbarToggle<CR> 
 
 set updatetime=500
@@ -705,13 +683,12 @@ let g:haddock_browser_callformat = "%s %s"
 
 "au BufEnter *.cpp set ft=cpp11
 
-let NERDTreeIgnore=['\.o$', '\.d$', '\.pyc$', '\.d$']
+let NERDTreeIgnore=['\.o$', '\.d$', '\.pyc$', '\.d$', '__pycache__']
 
 set makeprg=make\ -w\ -j5
 
 let xml_use_xhtml = 1
 
-" autocmd BufWritePost *.py call Flake8()
 let python_version_2 = 1  " python.vim
 
 au FileType python setlocal ff=unix
