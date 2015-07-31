@@ -691,11 +691,8 @@ let xml_use_xhtml = 1
 
 let python_version_2 = 1  " python.vim
 
-au FileType python setlocal ff=unix
-au FileType html setlocal ff=unix
-au FileType conf setlocal ff=unix
-au FileType html setlocal shiftwidth=2
-au FileType html setlocal tabstop=2
+au FileType html,jinja,htmlja setlocal shiftwidth=2
+au FileType html,jinja,htmlja setlocal tabstop=2
 
 let g:syntastic_check_on_wq=0
 let g:syntastic_check_on_open = 1
