@@ -120,6 +120,7 @@ NeoBundle 'sukima/xmledit'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
+NeoBundle 'hail2u/vim-css3-syntax'
 
 NeoBundle 'majutsushi/tagbar'
 NeoBundle "pangloss/vim-javascript"
