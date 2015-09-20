@@ -227,6 +227,7 @@ set noerrorbells
 set novisualbell
 set t_vb=
 
+set lazyredraw
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
