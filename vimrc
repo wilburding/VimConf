@@ -4,11 +4,11 @@
 "
 " Version: 3.3 - 21/01/10 01:05:46
 "
-" Blog_post: 
+" Blog_post:
 "       http://amix.dk/blog/post/19486#The-ultimate-vim-configuration-vimrc
 " Syntax_highlighted:
 "       http://amix.dk/vim/vimrc.html
-" Raw_version: 
+" Raw_version:
 "       http://amix.dk/vim/vimrc.txt
 "
 " How_to_Install:
@@ -67,7 +67,7 @@
 "           info -> :help fuzzyfinder@en
 "
 "  Revisions:
-"     > 3.3: Added syntax highlighting for Mako mako.vim 
+"     > 3.3: Added syntax highlighting for Mako mako.vim
 "     > 3.2: Turned on python_highlight_all for better syntax
 "            highlighting for Python
 "     > 3.1: Added revisions ;) and bufexplorer.vim
@@ -114,7 +114,6 @@ NeoBundle 'ervandew/supertab'
 NeoBundle 'hynek/vim-python-pep8-indent'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'Rip-Rip/clang_complete'
-" NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'lukerandall/haskellmode-vim'
 NeoBundle 'sukima/xmledit'
 NeoBundle 'tpope/vim-surround'
@@ -122,6 +121,12 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'ekalinin/Dockerfile.vim'
+NeoBundle 'mileszs/ack.vim'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'jmcantrell/vim-virtualenv'
 
 NeoBundle 'majutsushi/tagbar'
 NeoBundle "pangloss/vim-javascript"
@@ -315,7 +320,7 @@ function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
-endfunction 
+endfunction
 
 " From an idea by Michael Naumann
 function! VisualSearch(direction) range
@@ -353,7 +358,7 @@ cnoremap <C-N> <Down>
 
 func! Cwd()
   let cwd = getcwd()
-  return "e " . cwd 
+  return "e " . cwd
 endfunc
 
 func! DeleteTillSlash()
@@ -369,7 +374,7 @@ func! DeleteTillSlash()
     "else
     "  let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\\]\\).*\[\\\\\]", "\\1", "")
     "endif
-  endif   
+  endif
   return g:cmd_edited
 endfunc
 
@@ -405,9 +410,9 @@ map <leader>bp :bp<cr>
 " Tab configuration
 map <leader>tn :tabn<cr>
 map <leader>tp :tabp<cr>
-map <leader>te :tabedit 
+map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
+map <leader>tm :tabmove
 
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
@@ -433,7 +438,7 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=usetab
   set stal=2
@@ -448,7 +453,12 @@ endtry
 set laststatus=2
 
 " Format the statusline
-set statusline=\ %F%m%r%h[%{&ff},%{&fenc}]\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c\ \ \ Branch:%{fugitive#statusline()}\ \ \ GA:%b\ 0x%B
+" set statusline=\ %F%m%r%h[%{&ff},%{&fenc}]\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c\ \ \ Branch:%{fugitive#statusline()}\ \ \ GA:%b\ 0x%B
+let g:airline_section_a = '%{CurDir()}'
+" let g:airline_section_b = '%{fugitive#statusline()}'
+let g:airline_section_x = 'GA:%b 0x%B'
+let g:airline_section_y = '%{&ft}|%{&fenc}|%{&ff}'
+let g:airline_section_z = '%p%%:%L:%c'
 
 
 function! CurDir()
@@ -555,7 +565,7 @@ nmap <silent> <leader>nt :NERDTree<cr>
 
 "let loaded_taglist = 1
 
-nmap <F8> :TagbarToggle<CR> 
+nmap <F8> :TagbarToggle<CR>
 
 set updatetime=500
 
@@ -741,7 +751,7 @@ function! DoFormatXML() range
 	" Recalculate first and last lines of the edited code
 	let l:newFirstLine=search('<PrettyXML>')
 	let l:newLastLine=search('</PrettyXML>')
-	
+
 	" Get inner range
 	let l:innerFirstLine=l:newFirstLine+1
 	let l:innerLastLine=l:newLastLine-1
