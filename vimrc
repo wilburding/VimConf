@@ -1,79 +1,3 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer: amix the lucky stiff
-"             http://amix.dk - amix@amix.dk
-"
-" Version: 3.3 - 21/01/10 01:05:46
-"
-" Blog_post:
-"       http://amix.dk/blog/post/19486#The-ultimate-vim-configuration-vimrc
-" Syntax_highlighted:
-"       http://amix.dk/vim/vimrc.html
-" Raw_version:
-"       http://amix.dk/vim/vimrc.txt
-"
-" How_to_Install:
-"    $ mkdir ~/.vim_runtime
-"    $ svn co svn://orangoo.com/vim ~/.vim_runtime
-"    $ cat ~/.vim_runtime/install.sh
-"    $ sh ~/.vim_runtime/install.sh <system>
-"      <sytem> can be `mac`, `linux` or `windows`
-"
-" How_to_Upgrade:
-"    $ svn update ~/.vim_runtime
-"
-" Sections:
-"    -> General
-"    -> VIM user interface
-"    -> Colors and Fonts
-"    -> Files and backups
-"    -> Text, tab and indent related
-"    -> Visual mode related
-"    -> Command mode related
-"    -> Moving around, tabs and buffers
-"    -> Statusline
-"    -> Parenthesis/bracket expanding
-"    -> General Abbrevs
-"    -> Editing mappings
-"
-"    -> Cope
-"    -> Minibuffer plugin
-"    -> Omni complete functions
-"    -> Python section
-"    -> JavaScript section
-"
-" Plugins_Included:
-"     > minibufexpl.vim - http://www.vim.org/scripts/script.php?script_id=159
-"       Makes it easy to get an overview of buffers:
-"           info -> :e ~/.vim_runtime/plugin/minibufexpl.vim
-"
-"     > bufexplorer - http://www.vim.org/scripts/script.php?script_id=42
-"       Makes it easy to switch between buffers:
-"           info -> :help bufExplorer
-"
-"     > yankring.vim - http://www.vim.org/scripts/script.php?script_id=1234
-"       Emacs's killring, useful when using the clipboard:
-"           info -> :help yankring
-"
-"     > surround.vim - http://www.vim.org/scripts/script.php?script_id=1697
-"       Makes it easy to work with surrounding text:
-"           info -> :help surround
-"
-"     > snipMate.vim - http://www.vim.org/scripts/script.php?script_id=2540
-"       Snippets for many languages (similar to TextMate's):
-"           info -> :help snipMate
-"
-"     > fuzzyfinder - http://www.vim.org/scripts/script.php?script_id=1984
-"       Find files fast (similar to TextMate's feature):
-"           info -> :help fuzzyfinder@en
-"
-"  Revisions:
-"     > 3.3: Added syntax highlighting for Mako mako.vim
-"     > 3.2: Turned on python_highlight_all for better syntax
-"            highlighting for Python
-"     > 3.1: Added revisions ;) and bufexplorer.vim
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 "NeoBundle Scripts-----------------------------
 if has('vim_starting')
   if &compatible
@@ -81,11 +5,11 @@ if has('vim_starting')
   endif
 
   " Required:
-  set runtimepath+=/Users/wilbur/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
-call neobundle#begin(expand('/Users/wilbur/.vim/bundle'))
+call neobundle#begin(expand('~/.vim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -102,34 +26,37 @@ NeoBundle 'Shougo/vimproc.vim', {
 \ }
 
 " Add or remove your Bundles here:
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
 
-NeoBundle 'tpope/vim-fugitive'
+NeoBundle "pangloss/vim-javascript"
+NeoBundle 'Rip-Rip/clang_complete'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'ekalinin/Dockerfile.vim'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'hynek/vim-python-pep8-indent'
+NeoBundle 'jmcantrell/vim-virtualenv'
+NeoBundle 'lepture/vim-jinja'
+NeoBundle 'lukerandall/haskellmode-vim'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'mileszs/ack.vim'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'othree/html5-syntax.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'lepture/vim-jinja'
-NeoBundle 'ervandew/supertab'
-NeoBundle 'hynek/vim-python-pep8-indent'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'Rip-Rip/clang_complete'
-NeoBundle 'lukerandall/haskellmode-vim'
 NeoBundle 'sukima/xmledit'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'ekalinin/Dockerfile.vim'
-NeoBundle 'mileszs/ack.vim'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'gregsexton/gitv'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'jmcantrell/vim-virtualenv'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 
-NeoBundle 'majutsushi/tagbar'
-NeoBundle "pangloss/vim-javascript"
 " vim-scripts repos
 NeoBundle 'L9'
 NeoBundle 'IndentAnything'
@@ -159,10 +86,6 @@ source $VIMRUNTIME/mswin.vim
 
 " Sets how many lines of history VIM has to remember
 set history=300
-
-" Enable filetype plugin
-filetype plugin on
-filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -197,7 +120,7 @@ set mouse=a
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the curors - when moving vertical..
-set so=3
+set so=7
 
 set wildmenu "Turn on WiLd menu
 
@@ -228,6 +151,7 @@ set novisualbell
 set t_vb=
 
 set lazyredraw
+set updatetime=500
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -269,24 +193,16 @@ else
     set nu
 endif
 
-if has("win32") || has("win64")
-    set ffs=dos,unix
-elseif has("mac")
-    set ff=unix
-    set ffs=unix,dos,mac
-else
-    set ffs=unix,dos
-endif
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files and backups
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set ff=unix
+set ffs=unix,dos,mac
+
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
 set nowb
 set noswapfile
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -513,10 +429,6 @@ let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 autocmd FileType python setlocal completeopt=menu,longest
 
-au BufNewFile,BufRead *.jinja set syntax=htmljinja
-au BufNewFile,BufRead *.mako set ft=mako
-
-
 """"""""""""""""""""""""""""""
 " => Vim grep
 """"""""""""""""""""""""""""""
@@ -556,19 +468,6 @@ func! Run()
         exec '!runhaskell %'
 	endif
 endfunc
-
-" netrw setting
-let g:netrw_winsize = 30
-"nmap <silent> <leader>fe :Sexplore!<cr>
-
-" NERDTree setting
-nmap <silent> <leader>nt :NERDTree<cr>
-
-"let loaded_taglist = 1
-
-nmap <F8> :TagbarToggle<CR>
-
-set updatetime=500
 
 if has("cscope")
     "set csprg=/usr/bin/cscope
@@ -658,10 +557,6 @@ function Do_ctags()
 endfunction
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 
-autocmd filetype lisp,scheme,art,racket setlocal equalprg=scmindent.rkt
-
-let g:indent_guides_guide_size=1
-
 map <leader>ch :call SetColorColumn()<CR>
 function! SetColorColumn()
     let col_num = virtcol(".")
@@ -686,27 +581,17 @@ endif
 "let g:SuperTabDefaultCompletionType = "context"
 "let g:SuperTabContextDefaultCompletionType = "<c-p>"
 
-au FileType markdown set wrap
-
-
-" haskell mode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => haskell mode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au BufEnter *.hs compiler ghc
 let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
+let g:haddock_docdir="/usr/local/share/doc/ghc/html/"
 
-"au BufEnter *.cpp set ft=cpp11
-
-let NERDTreeIgnore=['\.o$', '\.d$', '\.pyc$', '\.d$', '__pycache__']
-
-set makeprg=make\ -w\ -j5
-
-let xml_use_xhtml = 1
-
-let python_version_2 = 1  " python.vim
-
-au FileType html,jinja,htmlja setlocal shiftwidth=2
-au FileType html,jinja,htmlja setlocal tabstop=2
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_check_on_wq=0
 let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list=1
@@ -718,7 +603,13 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_no_default_include_dirs = 1
 
-let g:jedi#use_tabs_not_buffers = 0
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => xml / html
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au FileType html,jinja,htmlja setlocal shiftwidth=2
+au FileType html,jinja,htmlja setlocal tabstop=2
+
+let xml_use_xhtml = 1
 
 " XML formatter
 function! DoFormatXML() range
@@ -775,7 +666,29 @@ command! -range=% FormatXML <line1>,<line2>call DoFormatXML()
 nmap <silent> <leader>x :%FormatXML<CR>
 vmap <silent> <leader>x :FormatXML<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => UltiSnips
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => misc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:jedi#use_tabs_not_buffers = 0
+
+"au BufEnter *.cpp set ft=cpp11
+
+let NERDTreeIgnore=['\.o$', '\.d$', '\.pyc$', '\.d$', '__pycache__']
+
+set makeprg=make\ -w\ -j5
+au FileType markdown set wrap
+
+" netrw setting
+let g:netrw_winsize = 30
+"nmap <silent> <leader>fe :Sexplore!<cr>
+nmap <silent> <leader>nt :NERDTree<cr>
+"let loaded_taglist = 1
+nmap <F8> :TagbarToggle<CR>
