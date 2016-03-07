@@ -41,11 +41,13 @@ NeoBundle 'gregsexton/gitv'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'hynek/vim-python-pep8-indent'
+NeoBundle 'itchyny/vim-haskell-indent'
 NeoBundle 'jmcantrell/vim-virtualenv'
 NeoBundle 'lepture/vim-jinja'
-NeoBundle 'lukerandall/haskellmode-vim'
+" NeoBundle 'lukerandall/haskellmode-vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'mileszs/ack.vim'
+"NeoBundle 'neovimhaskell/haskell-vim'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'othree/html5-syntax.vim'
 NeoBundle 'scrooloose/nerdcommenter'
@@ -584,10 +586,10 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => haskell mode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufEnter *.hs compiler ghc
-let g:haddock_browser = "open"
-let g:haddock_browser_callformat = "%s %s"
-let g:haddock_docdir="/usr/local/share/doc/ghc/html/"
+"au BufEnter *.hs compiler ghc
+"let g:haddock_browser = "open"
+"let g:haddock_browser_callformat = "%s %s"
+"let g:haddock_docdir="/usr/local/share/doc/ghc/html/"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => syntastic
