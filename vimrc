@@ -28,7 +28,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 " Add or remove your Bundles here:
 
 NeoBundle "pangloss/vim-javascript"
-NeoBundle 'Rip-Rip/clang_complete'
+NeoBundle 'myint/clang-complete'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'ctrlpvim/ctrlp.vim'
@@ -37,6 +37,7 @@ NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'gcorne/vim-sass-lint'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'honza/vim-snippets'
@@ -402,7 +403,7 @@ func! DeleteTrailingWS()
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.py,*.js,*.jsx :call DeleteTrailingWS()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -605,6 +606,10 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_no_default_include_dirs = 1
 
+let g:syntastic_sass_checkers=["sass_lint"]
+let g:syntastic_scss_checkers=["sass_lint"]
+
+let g:syntastic_javascript_checkers=["eslint"]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => xml / html
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -677,6 +682,24 @@ let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => go
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au FileType go nmap <leader>gr <Plug>(go-run)
+au FileType go nmap <leader>gb <Plug>(go-build)
+au FileType go nmap <leader>gt <Plug>(go-test)
+au FileType go nmap <leader>gc <Plug>(go-coverage)
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:jedi#use_tabs_not_buffers = 0
@@ -694,3 +717,5 @@ let g:netrw_winsize = 30
 nmap <silent> <leader>nt :NERDTree<cr>
 "let loaded_taglist = 1
 nmap <F8> :TagbarToggle<CR>
+
+let g:ack_default_options = " -s -H --nocolor --nogroup --column --ignore-file='match:/cscope..*$' --ignore-file='match:/^tags$/'"
