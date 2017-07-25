@@ -28,6 +28,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 " Add or remove your Bundles here:
 
 NeoBundle "pangloss/vim-javascript"
+NeoBundle "mxw/vim-jsx"
 NeoBundle 'myint/clang-complete'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'airblade/vim-gitgutter'
@@ -59,6 +60,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
+NeoBundle 'iamcco/markdown-preview.vim'
 
 " vim-scripts repos
 NeoBundle 'L9'
@@ -85,7 +87,7 @@ NeoBundleCheck
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source $VIMRUNTIME/mswin.vim
+" source $VIMRUNTIME/mswin.vim
 
 " Sets how many lines of history VIM has to remember
 set history=300
@@ -99,6 +101,7 @@ set autowrite
 let mapleader = ","
 let g:mapleader = ","
 
+set wildignore+=node_modules
 " Fast saving
 nmap <leader>w :w!<cr>
 
@@ -709,7 +712,11 @@ let g:jedi#use_tabs_not_buffers = 0
 let NERDTreeIgnore=['\.o$', '\.d$', '\.pyc$', '\.d$', '__pycache__']
 
 set makeprg=make\ -w\ -j5
+
 au FileType markdown set wrap
+let vim_markdown_preview_hotkey='<C-m>'
+let g:mkdp_path_to_chrome = "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
+let g:mkdp_refresh_slow = 1
 
 " netrw setting
 let g:netrw_winsize = 30
