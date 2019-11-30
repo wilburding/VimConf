@@ -1,89 +1,69 @@
-"NeoBundle Scripts-----------------------------
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
+
+if &compatible
+  set nocompatible
+endif
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
+
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('flazz/vim-colorschemes')
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add("pangloss/vim-javascript")
+  call dein#add("mxw/vim-jsx")
+  call dein#add('myint/clang-complete')
+  call dein#add('SirVer/ultisnips')
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('ctrlpvim/ctrlp.vim')
+  call dein#add('davidhalter/jedi-vim')
+  call dein#add('ekalinin/Dockerfile.vim')
+  call dein#add('ervandew/supertab')
+  call dein#add('fatih/vim-go')
+  call dein#add('gcorne/vim-sass-lint')
+  call dein#add('gregsexton/gitv')
+  call dein#add('hail2u/vim-css3-syntax')
+  call dein#add('honza/vim-snippets')
+  call dein#add('hynek/vim-python-pep8-indent')
+  call dein#add('itchyny/vim-haskell-indent')
+  call dein#add('jmcantrell/vim-virtualenv')
+"  call dein#add('lepture/vim-jinja')
+  call dein#add('Valloric/YouCompleteMe')
+" NeoBundle 'lukerandall/haskellmode-vim'
+  call dein#add('majutsushi/tagbar')
+  call dein#add('mileszs/ack.vim')
+  call dein#add('neovimhaskell/haskell-vim')
+  call dein#add('othree/html5.vim')
+  call dein#add('othree/html5-syntax.vim')
+  call dein#add('scrooloose/nerdcommenter')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('scrooloose/syntastic')
+  call dein#add('sukima/xmledit')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('tpope/vim-surround')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('iamcco/markdown-preview.vim')
+
+  call dein#add('vim-scripts/L9')
+  call dein#add('vim-scripts/IndentAnything')
+  call dein#add('vim-scripts/c.vim')
+  call dein#add('vim-scripts/bufexplorer.zip')
+  call dein#add('vim-scripts/matchit.zip')
+  call dein#add('vim-scripts/python.vim')
+
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
   endif
 
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  call dein#end()
+  call dein#save_state()
 endif
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make -f make_mac.mak',
-\     'linux' : 'make',
-\     'unix' : 'gmake',
-\    },
-\ }
-
-" Add or remove your Bundles here:
-
-NeoBundle "pangloss/vim-javascript"
-NeoBundle "mxw/vim-jsx"
-NeoBundle 'myint/clang-complete'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'ekalinin/Dockerfile.vim'
-NeoBundle 'ervandew/supertab'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'gcorne/vim-sass-lint'
-NeoBundle 'gregsexton/gitv'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'hynek/vim-python-pep8-indent'
-NeoBundle 'itchyny/vim-haskell-indent'
-NeoBundle 'jmcantrell/vim-virtualenv'
-NeoBundle 'lepture/vim-jinja'
-" NeoBundle 'lukerandall/haskellmode-vim'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'mileszs/ack.vim'
-"NeoBundle 'neovimhaskell/haskell-vim'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'othree/html5-syntax.vim'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'sukima/xmledit'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'iamcco/markdown-preview.vim'
-
-" vim-scripts repos
-NeoBundle 'L9'
-NeoBundle 'IndentAnything'
-NeoBundle 'c.vim'
-NeoBundle 'bufexplorer.zip'
-NeoBundle 'matchit.zip'
-NeoBundle 'python.vim'
-
-" You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
-" Required:
-call neobundle#end()
-
-" Required:
 filetype plugin indent on
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-"End NeoBundle Scripts------------------
-"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
